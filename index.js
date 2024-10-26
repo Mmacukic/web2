@@ -27,7 +27,7 @@ app.post('/api/ticket', async (req, res) => {
   }
 
   try {
-    // Check if vatin already has 3 tickets.
+    //Check if vatin already has 3 tickets.
     const result = await query('SELECT COUNT(*) FROM tickets WHERE vatin = $1', [vatin]);
     if (parseInt(result.rows[0].count) >= 3) {
       return res.status(400).send('Cannot generate more than 3 tickets for this VATIN');
@@ -59,9 +59,7 @@ app.get('/ticket/:id', async (req, res) => {
 
     const ticket = result.rows[0];
     res.json({
-      vatin: ticket.vatin,
-      firstName: ticket.first_name,
-      lastName: ticket.last_name,
+      ticketId: ticketId,
       createdAt: ticket.created_at,
     });
   } catch (error) {
