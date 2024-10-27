@@ -25,10 +25,10 @@ const config = {
 app.use(auth(config));
 
 app.get('/', async (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
   try {
     const result = await query('SELECT COUNT(*) FROM tickets');
-    res.send(`Total tickets generated: ${result.rows[0].count}`);
+    const message = req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out';
+    res.send(`${message}. Total tickets generated: ${result.rows[0].count}`);
   } catch (error) {
     res.status(500).send('Failed to retrieve ticket count');
   }
