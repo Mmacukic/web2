@@ -18,7 +18,7 @@ const config = {
   auth0Logout: true,
   secret: 'a long, randomly-generated string stored in env',
   baseURL: 'https://web2-cxc8.onrender.com',
-  clientID: 'VV8I53052ksUgBAxYhIWIfOF8tB2LRSl',
+  clientID: 'WcvPnCb3Xr4kpHyBqsyTRSVGgVjJqFBx',
   issuerBaseURL: 'https://dev-wfwbzvgde1azdrnn.eu.auth0.com'
 };
 
