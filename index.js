@@ -132,7 +132,7 @@ app.post('/api/ticket', validateAccessToken, async (req, res) => {
 });
 
 // Endpoint: Get ticket details.
-app.get('/ticket/:id', async (req, res) => {
+app.get('/ticket/:id',requiresAuth(), async (req, res) => {
   const ticketId = req.params.id;
   try {
     const result = await query('SELECT * FROM tickets WHERE id = $1', [ticketId]);
