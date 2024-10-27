@@ -28,7 +28,27 @@ app.get('/', async (req, res) => {
   try {
     const result = await query('SELECT COUNT(*) FROM tickets');
     const message = req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out';
-    res.send(`${message}. Total tickets generated: ${result.rows[0].count}`);
+    const loginUrl = 'https://web2-cxc8.onrender.com/login';
+    const logoutUrl = 'https://web2-cxc8.onrender.com/logout';
+
+    // Generate the HTML response
+    const html = `
+      <html>
+        <head>
+          <title>Ticket System</title>
+        </head>
+        <body>
+          <h1>${message}</h1>
+          <p>Total tickets generated: ${result.rows[0].count}</p>
+          <p>
+            <a href="${loginUrl}">Log In</a> | 
+            <a href="${logoutUrl}">Log Out</a>
+          </p>
+        </body>
+      </html>
+    `;
+
+    res.send(html);
   } catch (error) {
     res.status(500).send('Failed to retrieve ticket count');
   }
